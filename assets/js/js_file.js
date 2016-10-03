@@ -118,7 +118,7 @@
                    divid=0;
                    divs=[];
                    $('#result-pane').empty();
-                   $('#result-pane').html('<img src="assets/images/ripple.svg" id="loading" align="">');
+                   $('#result-pane').html('<img src="assets/images/ripple.svg" id="loading">');
                    $.ajax({
                         type: "POST",
                         url: "http://localhost/rest_project/main/search",
@@ -159,6 +159,7 @@
                divid=0;
                divs=[];
                $('#result-pane').empty();
+               $('#result-pane').html('<img src="assets/images/ripple.svg" id="loading">');
                $.ajax({
                     type: "POST",
                     url: "http://localhost/rest_project/main/search",
@@ -166,6 +167,12 @@
                     dataType: 'json',
                     crossDomain:true,
                     xhrFields:{withCredentials:true},
+                    beforeSend: function(){
+                            $("#loading").show();
+                        },
+                        complete: function(){
+                            $("#loading").hide();
+                        },
                     success:function(data){
                         search_results= data.Providers;
                         total_results=search_results.length;
