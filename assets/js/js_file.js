@@ -33,17 +33,19 @@
            
            $('#sort-btn').on('click',function(){
                $('#result-pane').empty();
-               divs.reverse();
-               numofdiv=0;
-               i=0;
-               for(i;i<total_results;i++){
-                   $('#result-pane').append(divs[i]);   
-                   numofdiv++;
-                   if(numofdiv>=5){
-                       $('#result-pane').append($("<button>Show more></button>").attr({'id':'show-more','class':'btn btn-primary'}).css('float','right'));
-                       break;
-                    }
-               } 
+               if(divs){
+                   divs.reverse();
+                   numofdiv=0;
+                   i=0;
+                   for(i;i<total_results;i++){
+                       $('#result-pane').append(divs[i]);   
+                       numofdiv++;
+                       if(numofdiv>=5){
+                           $('#result-pane').append($("<button>Show more></button>").attr({'id':'show-more','class':'btn btn-primary'}).css('float','right'));
+                           break;
+                        }
+                   }
+               }
            });
            
            
@@ -172,6 +174,7 @@
                         console.log("error !! in search bar result... ");
                     }
                 });
+                console.log("fname="+fname+"lname="+lname);
            }    // end search_bar_results()
 
            

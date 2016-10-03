@@ -54,17 +54,17 @@ class Main extends CI_Controller {
             $specialityid=$this->input->post('specialityid');
             $fname=$this->input->post('fname');
             $lname=$this->input->post('lname');
-//            $fname='ANGELA';
-//            $lname='FERRIS';
+//            $fname='';
+//            $lname='';
 //            $cityid=42094;
 //            $state='WA';
-//            $specialityid=1;    
+//            $specialityid=1;  
             $modelresponse=$this->providers->search_criteria($cityid,$state,$specialityid);
             if($modelresponse){
                 $db_response='{"Providers":'.json_encode($modelresponse).'}';
-                if($fname && $lname){
-                    $abc=  json_decode($db_response);
-                    foreach ($abc as $value) {
+                if($fname||$lname){
+                    $decoded_db_response=  json_decode($db_response);
+                    foreach ($decoded_db_response as $value) {
                         foreach ($value as $obj) {
                             if($fname==$obj->firstName&& $lname==$obj->lastName){
                                 $tosend='{"Providers":['.json_encode($obj).']}';
