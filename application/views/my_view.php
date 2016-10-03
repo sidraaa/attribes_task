@@ -53,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <form>
                         <input id="search-bar" type="text" name="search" placeholder="Search by Provider Name..">
                     </form>
-                    <div id= 'result-pane' class="con">
+                    <div id= 'result-pane' style="text-align: center; padding: 80px;" >
+                        
                         
                     </div>
 

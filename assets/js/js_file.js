@@ -16,8 +16,7 @@
            var divs=new Array();;
            get_dd();
            search();
-          
-           
+
            $("#sp-dd, #c-dd").change(function(){
                 sp_id = $("#sp-dd option:selected").val();
                 c_id = $("#c-dd option:selected").val();
@@ -119,6 +118,7 @@
                    divid=0;
                    divs=[];
                    $('#result-pane').empty();
+                   $('#result-pane').html('<img src="assets/images/ripple.svg" id="loading" align="">');
                    $.ajax({
                         type: "POST",
                         url: "http://localhost/rest_project/main/search",
@@ -126,6 +126,12 @@
                         dataType: 'json',
                         crossDomain:true,
                         xhrFields:{withCredentials:true},
+                        beforeSend: function(){
+                            $("#loading").show();
+                        },
+                        complete: function(){
+                            $("#loading").hide();
+                        },
                         success:function(data){
                             search_results= data.Providers;
                             total_results=search_results.length;
